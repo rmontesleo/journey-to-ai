@@ -1,3 +1,16 @@
+### Environment Variables ###
+.env
+**/.env
+
+### Node modules ###
+node_modules
+**/node_modules
+
+### Some generated files ###
+*.mp3
+**/*.mp3
+
+
 ### STS ###
 .apt_generated
 .classpath
@@ -25,12 +38,6 @@ build/
 
 ### VS Code ###
 .vscode/
+**/.vscode
 
 
-### Environment Variables ###
-.env
-**/.env
-
-### Node modules ###
-node_modules
-**/node_modules
