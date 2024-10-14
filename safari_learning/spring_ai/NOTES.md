@@ -6,7 +6,7 @@
 ```text
 system: You are an expert travel agent, good at travel planning
 user: I have a day off during the week. I'm based in the Hartford, CT area. Please suggest some intersting activities.
-````
+```
 
 
 
