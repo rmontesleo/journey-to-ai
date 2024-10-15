@@ -14,6 +14,7 @@ async function getOpenAIChatResponse( prompt ) {
         role: 'user',
         content: prompt
     });
+  
 
     try {
         const completion = await openai.chat.completions.create({
