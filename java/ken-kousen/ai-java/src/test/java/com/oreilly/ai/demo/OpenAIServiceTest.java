@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import com.oreilly.ai.demo.OpenAIService.TTSRequest;
-
 import static com.oreilly.ai.demo.OpenAIService.*;
 
 
@@ -36,21 +35,21 @@ public class OpenAIServiceTest {
             models.data().forEach(System.out::println);
 
             models.data().stream()
-                .sorted( Comparator.comparing( OpenAIService.Model::id ) )
+                .sorted( Comparator.comparing( Model::id ) )
                 .forEach(System.out::println);
 
     }
 
     @Test
     void testSimpleJsonGetModels(){
-           OpenAIService.SimpleModelList models = service.getSimpleJsonModelsByGson();
+           SimpleModelList models = service.getSimpleJsonModelsByGson();
             System.out.println(models);
             assertNotNull(models);
             assertTrue(models.data().size() > 0);        
             models.data().forEach(System.out::println);
 
             models.data().stream()
-                .sorted( Comparator.comparing( OpenAIService.SimpleModel::id ) )
+                .sorted( Comparator.comparing( SimpleModel::id ) )
                 .forEach(System.out::println);
     }
 

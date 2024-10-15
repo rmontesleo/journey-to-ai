@@ -8,7 +8,7 @@ public interface Assistant {
     @UserMessage("Does {{it}} has a positive sentiment?")
     boolean isPositive(String text);
 
-    @UserMessage("Classify {{it}} by the sentiment enum")
+    @UserMessage("Classify {{it}} by the Sentiment enum")
     Sentiment clasify(String text);
 
     @UserMessage("Extract a Person instance from {{it}}")

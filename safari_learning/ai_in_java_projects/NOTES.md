@@ -1,6 +1,20 @@
 # Integrating AI in Java Projects
 
 
+## Using  API to get information from OpenAI
+
+### Using speech 
+```bash
+curl  https://api.openai.com/v1/audio/speech \
+-H "Authorization: Bearer $OPENAI_API_KEY" \
+-H "Content-Type: application/json" \
+-d '{\n    "model": "tts-1",\n    "input": "The quick brown fox jumped over the lazy dog.",\n    "voice": "alloy"\n  }' \
+--output speech.mp3
+```
+
+
+## Using Chats to get information
+
 ### Ask this to ChatGPT and Claude  
 ```text
 Please give a set of Java records that corresponds to this JSON Structure 
@@ -43,6 +57,9 @@ public class Main {
     }
 }
 ```
+
+
+
 
 
 ## Using de Playground in OpenAI
