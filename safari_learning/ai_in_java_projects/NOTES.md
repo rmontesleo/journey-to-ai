@@ -98,6 +98,9 @@ That's good. I want something within 15 minutes of Marlborough, CT
 # install
 curl -fsSL https://ollama.com/install.sh | sh
 
+# start ollama
+ollama serve
+
 # list your local models
 ollama list
 
@@ -122,7 +125,7 @@ ollama run llama3.1
 ### checking the API
 ```bash
 curl http://localhost:11434/api/generate -d '{
-  "model": "llama3.2",
+  "model": "llama3.1",
   "prompt":"Why is the sky blue?"
 }'
 ```
@@ -147,3 +150,5 @@ curl http://localhost:11434/api/generate -d '{
 
 - [Ollama](https://ollama.com/)
 - [GitHub Ollama](https://github.com/ollama/ollama)
+
+- [Switch Between Multiple Java Versions](https://www.baeldung.com/linux/java-choose-default-version)
