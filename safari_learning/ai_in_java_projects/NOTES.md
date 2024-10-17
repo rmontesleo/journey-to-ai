@@ -12,6 +12,12 @@ curl  https://api.openai.com/v1/audio/speech \
 --output speech.mp3
 ```
 
+### Getting models
+```bash
+curl https://api.openai.com/v1/models \
+-H "Authorization: Bearer $OPENAI_API_KEY" | jq
+```
+
 
 ## Using Chats to get information
 
@@ -84,7 +90,46 @@ That's good. I want something within 15 minutes of Marlborough, CT
 - 03_curl_sandbox_conversation.sh
 
 
+## Ollama
 
+### Install Ollama on Linux
+```bash
+
+# install
+curl -fsSL https://ollama.com/install.sh | sh
+
+# list your local models
+ollama list
+
+# run llama3.1
+ollama run llama3.1
+
+```
+
+### running ollama 3.1
+```text
+
+# you see a new prompt you can ask
+
+>>> Who won the last Super Bowl?
+
+>>> Tell me about the transformer model for GPT as if I was a 5 year old
+
+>>> /bye
+
+```
+
+### checking the API
+```bash
+curl http://localhost:11434/api/generate -d '{
+  "model": "llama3.2",
+  "prompt":"Why is the sky blue?"
+}'
+```
+
+
+
+---
 
 ## References
 - [Integrating AI in Java Projects](https://learning.oreilly.com/live-events/integrating-ai-in-java-projects/0642572001330/)
@@ -101,3 +146,4 @@ That's good. I want something within 15 minutes of Marlborough, CT
 - [Langchain4j Language Models](https://docs.langchain4j.dev/category/language-models)
 
 - [Ollama](https://ollama.com/)
+- [GitHub Ollama](https://github.com/ollama/ollama)

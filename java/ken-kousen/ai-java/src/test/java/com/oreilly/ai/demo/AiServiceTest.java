@@ -1,12 +1,24 @@
 package com.oreilly.ai.demo;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
+
 import org.junit.jupiter.api.Test;
 
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.ImageContent;
+import dev.langchain4j.data.message.TextContent;
+import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModelName;
+import dev.langchain4j.model.output.Response;
 import dev.langchain4j.service.AiServices;
+
+
 
 public class AiServiceTest {
 
@@ -15,8 +27,8 @@ public class AiServiceTest {
     private final ChatLanguageModel model = OpenAiChatModel.builder()
             .apiKey(apiKey)
             .modelName(OpenAiChatModelName.GPT_4_O_MINI)
-            .logRequests(true)
-            .logResponses(true)
+            .logRequests(false)
+            .logResponses(false)
             .build();
 
     Assistant assistant = AiServices.builder(Assistant.class)
@@ -24,6 +36,59 @@ public class AiServiceTest {
             .chatMemory(MessageWindowChatMemory.withMaxMessages(20))
             .build();
 
+    
+    @Test
+    void visionRequest(){
+        String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a0/Hello_Kitty_coffee.jpg";
+        UserMessage userMessage = UserMessage.from(
+            TextContent.from("What is in this image?"), 
+            ImageContent.from(imageUrl) 
+        );
+
+        Response<AiMessage> response =  model.generate( userMessage );
+        System.out.println("AI Message is" + response.content().text() );
+        System.out.println("token usage is " + response.tokenUsage() );
+    }
+
+    @Test
+    void vision_from_localFile() throws IOException  {
+        //String imageUrl = "file:///home/sergio/Downloads/Hello_Kitty_coffee.jpg";
+
+        String filePath = "src/main/resources/Hello_Kitty_coffee.jpg";
+        byte[] fileBytes = Files.readAllBytes(Paths.get(filePath));
+        String base64Image = Base64.getEncoder().encodeToString(fileBytes);
+        
+        UserMessage userMessage = UserMessage.from(
+            TextContent.from("What is in this image?"), 
+            new ImageContent(base64Image, "image/jpeg") 
+        );
+        
+        
+        Response<AiMessage> response =  model.generate( userMessage );
+        System.out.println("AI Message is" + response.content().text() );
+        System.out.println("token usage is " + response.tokenUsage() );
+    }
+
+    @Test
+    void answer_from_image() throws IOException  {
+
+        String filePath = "src/main/resources/question.png";
+        byte[] fileBytes = Files.readAllBytes(Paths.get(filePath));
+        String base64Image = Base64.getEncoder().encodeToString(fileBytes);
+        
+        UserMessage userMessage = UserMessage.from(
+            TextContent.from("Could you answer the question?"), 
+            new ImageContent(base64Image, "image/png") 
+        );
+        
+        
+        Response<AiMessage> response =  model.generate( userMessage );
+        System.out.println("AI Message is" + response.content().text() );
+        System.out.println("token usage is " + response.tokenUsage() );
+    }
+
+
+    
     @Test
     void conversation() {
 
