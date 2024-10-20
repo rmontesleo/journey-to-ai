@@ -151,4 +151,6 @@ curl http://localhost:11434/api/generate -d '{
 - [Ollama](https://ollama.com/)
 - [GitHub Ollama](https://github.com/ollama/ollama)
 
+- [Introduction to Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/overview/)
+
 - [Switch Between Multiple Java Versions](https://www.baeldung.com/linux/java-choose-default-version)

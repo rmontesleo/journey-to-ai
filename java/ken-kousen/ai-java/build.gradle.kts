@@ -25,6 +25,7 @@ dependencies {
 	implementation ("dev.langchain4j:langchain4j:0.35.0")
 	implementation ("dev.langchain4j:langchain4j-open-ai:0.35.0")
 	implementation ("dev.langchain4j:langchain4j-ollama:0.35.0")
+	implementation ("dev.langchain4j:langchain4j-easy-rag:0.35.0")
 
 	// Logging
 	implementation("org.slf4j:slf4j-api:2.0.12")

@@ -4,11 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import dev.langchain4j.data.image.Image;
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
+import dev.langchain4j.model.image.ImageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.openai.OpenAiImageModel;
+import dev.langchain4j.model.openai.OpenAiImageModelName;
 import dev.langchain4j.model.openai.OpenAiChatModelName;
 import dev.langchain4j.model.output.Response;
 import dev.langchain4j.service.AiServices;
@@ -34,6 +38,20 @@ public class OpenAILangChain4jTest {
             .build();
 
     
+
+
+    @Test
+    void useo1Mini(){
+        //OpenAiChatModelName.GPT_4_O_MINI
+        OpenAiChatModel model = OpenAiChatModel.builder()
+            .apiKey(apiKey)
+            .modelName(OpenAiChatModelName.GPT_4_O_MINI)
+            .build();
+
+        String anwer = model.generate("Tell me how Java is awesome?");
+        System.out.println("Answer: " + anwer);
+    }            
+
 
     @Test
     void generateWithString() {
@@ -103,6 +121,31 @@ public class OpenAILangChain4jTest {
                 What are the full filmography of this director?
                 """ );
         System.out.println("#### Fifth answer: " + fifthAnswer);                 
+
+    }
+
+    @Test
+    void imageGeneration(){
+
+        ImageModel model = OpenAiImageModel.builder()
+            .apiKey(apiKey)
+            .modelName( OpenAiImageModelName.DALL_E_3 )
+            .logRequests(true)
+            .logResponses(true)
+            .build();
+
+        
+        String userMessage = """
+                        A warrior cat riding into battle
+                        on the back of a giant squirrel
+                        """;    
+        Response<Image> response = model.generate(userMessage);
+        System.out.println("### Image URL: " + response.content().url() );
+        System.out.println("Token usage: " + response.tokenUsage() );
+        //System.out.println("Revised prompt: " + response.content().revisedPrompt() );
+                
+                
+
 
     }
 
