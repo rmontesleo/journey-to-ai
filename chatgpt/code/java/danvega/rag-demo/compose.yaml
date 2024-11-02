@@ -1,0 +1,32 @@
+services:
+  pgvector:
+    image: 'pgvector/pgvector:pg16'
+    container_name: pgvector
+    environment:
+      - 'POSTGRES_DB=markets'
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_USER=user'
+    labels:
+      - "org.springframework.boot.service-connection=postgres"
+    ports:
+      - '5432:5432'
+    #volumes:
+    #  - pgdata:/var/lib/postgresql/data
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - 9090:80
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@email.com
+      PGADMIN_DEFAULT_PASSWORD: password    
+
+
+
+volumes:
+  #pgdata:
+  pgadmin-data:
