@@ -34,9 +34,57 @@ pip install langchain_experimental
 
 pip install -U langchain-community
 
-ip install tabulate
+pip install tabulate
 ```
 
+### Creating the `requirements.txt` file
+
+To create a `requirements.txt` file for your project, follow these steps:
+
+1. **Activate the virtual environment**:
+```bash
+source venv/bin/activate
+```
+
+2. **Freeze the current environment's packages**:
+```bash
+pip freeze > requirements.txt
+```
+
+This will generate a `requirements.txt` file with all the installed packages and their respective versions, which can be used to restore the virtual environment later.
+
+
+
+### Restoring the project with specific dependencies
+
+To restore the project with the specific dependencies listed in the `requirements.txt` file, follow these steps:
+
+1. **Create the virtual environment** (if not already created):
+```bash
+python3 -m venv venv
+```
+
+2. **Activate the virtual environment**:
+```bash
+source venv/bin/activate
+```
+
+3. **Install the dependencies from `requirements.txt`**:
+```bash
+pip install -r requirements.txt
+```
+
+4. **Verify the installed dependencies**:
+```bash
+pip list
+```
+
+5. **Deactivate the virtual environment** (when done):
+```bash
+deactivate
+```
+
+Make sure you have a `requirements.txt` file in your project directory with the necessary dependencies listed.
 
 
 ## References
